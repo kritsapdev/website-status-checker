@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Status Checker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* bg-gray-100 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff; /* bg-white */
+            padding: 30px;
+            border-radius: 12px; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            width: 100%;
+            max-width: 500px; /* Increased max-width */
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 24px; /* text-2xl */
+            font-weight: 700; /* font-semibold */
+            color: #1e293b; /* text-gray-900 */
+            margin-bottom: 20px; /* mb-4 */
+            text-align: center; /* Center heading */
+        }
+
+        form {
+            margin-bottom: 20px; /* mb-4 */
+        }
+
+        label {
+            display: block;
+            font-size: 16px; /* text-base */
+            font-weight: 600; /* font-medium */
+            color: #4b5563; /* text-gray-600 */
+            margin-bottom: 8px; /* mb-2 */
+        }
+
+        input[type="text"] {
+            width: 100%; /* Full width */
+            padding: 12px; /* px-4 py-2 */
+            border: 1px solid #d1d5db; /* border-gray-300 */
+            border-radius: 6px; /* rounded-md */
+            font-size: 16px; /* text-base */
+            margin-bottom: 16px; /* mb-4 */
+            box-sizing: border-box; /* Ensure padding doesn't affect width */
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3b82f6; /* ring-2 ring-blue-500 */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); /* Light blue shadow */
+        }
+
+
+        button {
+            background-color: #3b82f6; /* bg-blue-500 */
+            color: #ffffff; /* text-white */
+            padding: 12px 24px; /* py-2 px-4 */
+            border-radius: 6px; /* rounded-md */
+            font-size: 16px; /* text-base */
+            font-weight: 600; /* font-semibold */
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition */
+            width: 100%; /* Full width */
+            border: none;
+            display: block; /* Ensure block display for full width */
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #2563eb; /* bg-blue-700 */
+        }
+
+        .result-container {
+            margin-top: 20px; /* mt-4 */
+            padding: 20px; /* p-4 */
+            border-radius: 6px; /* rounded-md */
+            text-align: center;
+            border: 1px solid #e5e7eb;
+            background-color: #f9fafb;
+        }
+
+        #result {
+            font-size: 20px; /* text-xl */
+            font-weight: 600; /* font-semibold */
+            color: #1f2937; /* text-gray-800 */
+        }
+
+        .error-message {
+            color: #dc2626; /* text-red-500 */
+            margin-top: 16px; /* mt-4 */
+            font-size: 16px;
+            padding: 10px;
+            background-color: #fee2e2;
+            border-radius: 6px;
+            border: 1px solid #fecaca;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Website Status Checker</h1>
+        <form method="POST">
+            <label for="url">Enter URL:</label>
+            <input type="text" id="url" name="url" placeholder="https://www.example.com" value="{{ url }}">
+            <button type="submit">Check Status</button>
+        </form>
+
+        {% if error_message %}
+            <div class="error-message">{{ error_message }}</div>
+            {% elif status_code is not none %}  {# Changed 'None' to 'none' #}
+            <div class="result-container">
+                <p>Status Code:</p>
+                <p id="result">{{ status_code }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
