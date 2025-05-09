@@ -60,7 +60,16 @@ def index():
             status_code = get_website_status(url)
             if status_code is None:
                 error_message = "Failed to retrieve status.  Check the URL and try again."
+            else:
+                if status_code == 200:
+                    error_message = "Website is up and running!"
+                elif status_code == 404:
+                        error_message = "Website not found (404)."
+                elif status_code == 500:
+                        error_message = "Internal server error (500)."
+        
 
+            
     return render_template('index.html', status_code=status_code, url=url, error_message=error_message)
 
 if __name__ == "__main__":
