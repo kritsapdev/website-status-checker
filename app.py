@@ -72,4 +72,4 @@ def index():
     return render_template('index.html', status_code=status_code, url=url, error_message=error_message)
 
 if __name__ == "__main__":
-    app.run(debug=True) #remove debug=True for production
+    app.run(host="0.0.0.0", port=8080)
