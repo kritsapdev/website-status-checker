@@ -68,8 +68,6 @@ def index():
                 elif status_code == 500:
                         error_message = "Internal server error (500)."
         
-        
-
             
     return render_template('index.html', status_code=status_code, url=url, error_message=error_message)
 
